@@ -7,27 +7,27 @@ This document breaks down the SkyMind project into highly detailed, granular pha
 ## Phase 1: Project Initialization & Infrastructure Setup
 **Goal:** Establish the foundational repositories, architecture layout, CI/CD pipelines, and local development environment.
 
-- [ ] **Task 1.1: Initialize Mono-repo Structure**
+- [x] **Task 1.1: Initialize Mono-repo Structure**
   - **Description:** Create the GitHub repository, set up `.gitignore`, `README.md`, `LICENSE`, and initial folder structure (`backend/`, `frontend/`, `ml/`, `infrastructure/`).
   - **Commit:** `chore(repo): initialize SkyMind mono-repo structure with base config files`
 
-- [ ] **Task 1.2: Define System Architecture ADRs**
+- [x] **Task 1.2: Define System Architecture ADRs**
   - **Description:** Write Architecture Decision Records (ADRs) for Tech Stack, Database schemas (PostgreSQL + InfluxDB), and Microservices communication.
   - **Commit:** `docs(architecture): add ADRs for tech stack, DB schemas, and system design`
 
-- [ ] **Task 1.3: Setup Backend Environment (FastAPI)**
+- [x] **Task 1.3: Setup Backend Environment (FastAPI)**
   - **Description:** Initialize the Python FastAPI environment, configure `requirements.txt`/`pyproject.toml`, and set up Ruff for linting.
   - **Commit:** `build(backend): initialize FastAPI app with dependency management and linting`
 
-- [ ] **Task 1.4: Setup Frontend Environment (React/Vite + Tailwind)**
+- [x] **Task 1.4: Setup Frontend Environment (React/Vite + Tailwind)**
   - **Description:** Initialize the React application using Vite, configure Tailwind CSS, ESLint, and Prettier.
   - **Commit:** `build(frontend): setup React app with Vite, Tailwind CSS, and linting rules`
 
-- [ ] **Task 1.5: Configure Local Docker Environment**
+- [x] **Task 1.5: Configure Local Docker Environment**
   - **Description:** Create `docker-compose.yml` to spin up PostgreSQL, Redis, InfluxDB, and local backend/frontend instances for development.
   - **Commit:** `build(docker): setup local docker-compose for DBs, Redis, and app services`
 
-- [ ] **Task 1.6: Setup CI/CD Pipelines**
+- [x] **Task 1.6: Setup CI/CD Pipelines**
   - **Description:** Create GitHub Actions workflows for running unit tests, linting, and building Docker images on PRs.
   - **Commit:** `ci(github): add workflow for backend/frontend testing and linting`
 
@@ -36,23 +36,23 @@ This document breaks down the SkyMind project into highly detailed, granular pha
 ## Phase 2: Data Engineering & Ingestion Pipelines
 **Goal:** Build robust, scalable data ingestion pipelines to collect, clean, and store aviation and weather data.
 
-- [ ] **Task 2.1: Define Database Migrations (Alembic)**
+- [x] **Task 2.1: Define Database Migrations (Alembic)**
   - **Description:** Create initial Alembic migrations for core PostgreSQL tables: `Flights`, `Airports`, `Aircraft`, `Airlines`, and `Weather_Events`.
   - **Commit:** `feat(db): establish base schema migrations for flights, airports, and weather`
 
-- [ ] **Task 2.2: Implement Flight Data Ingestion Job**
+- [x] **Task 2.2: Implement Flight Data Ingestion Job**
   - **Description:** Create a Python Airflow/Celery job to pull historical and real-time flight telemetry from OpenSky Network & BTS APIs.
   - **Commit:** `feat(data): implement background worker for OpenSky flight data ingestion`
 
-- [ ] **Task 2.3: Implement Weather Data Ingestion Job**
+- [x] **Task 2.3: Implement Weather Data Ingestion Job**
   - **Description:** Create a job to integrate NOAA weather APIs, parse METAR/TAF data, and map weather events to specific airport coordinates.
   - **Commit:** `feat(data): implement NOAA weather ingestion and spatial airport mapping`
 
-- [ ] **Task 2.4: Build Data Cleaning & Normalization Service**
+- [x] **Task 2.4: Build Data Cleaning & Normalization Service**
   - **Description:** Build a processing service (using Pandas) to clean missing values, normalize timestamps to UTC, and standardize IATA/ICAO codes.
   - **Commit:** `feat(data): add normalization service for standardizing timestamps and IATA codes`
 
-- [ ] **Task 2.5: Develop ML Feature Engineering Pipeline**
+- [x] **Task 2.5: Develop ML Feature Engineering Pipeline**
   - **Description:** Create scripts to calculate dynamic ML features like rolling airport congestion scores, incoming aircraft delay propagation, and weather severity indexes.
   - **Commit:** `feat(data): implement dynamic feature engineering pipeline for ML models`
 
@@ -61,23 +61,23 @@ This document breaks down the SkyMind project into highly detailed, granular pha
 ## Phase 3: AI Models (Baseline) & Backend APIs
 **Goal:** Develop and deploy the initial predictive models and expose them via REST APIs.
 
-- [ ] **Task 3.1: Train Baseline Delay Prediction Model**
+- [x] **Task 3.1: Train Baseline Delay Prediction Model**
   - **Description:** Train an XGBoost model using historical data for binary delay prediction (Delayed vs. On-time) and evaluate accuracy.
   - **Commit:** `feat(ml): train baseline XGBoost model for binary delay prediction`
 
-- [ ] **Task 3.2: Implement Model Explainability (SHAP)**
+- [x] **Task 3.2: Implement Model Explainability (SHAP)**
   - **Description:** Integrate SHAP (SHapley Additive exPlanations) to dynamically generate human-readable reasons for why a flight was flagged for delay.
   - **Commit:** `feat(ml): integrate SHAP for delay prediction feature importance`
 
-- [ ] **Task 3.3: Develop Passenger Demand Forecasting Model**
+- [x] **Task 3.3: Develop Passenger Demand Forecasting Model**
   - **Description:** Train a time-series model (Prophet or SARIMA) to forecast route-level passenger demand using seasonality and holiday data.
   - **Commit:** `feat(ml): train Prophet model for seasonal passenger demand forecasting`
 
-- [ ] **Task 3.4: Create Model Inference APIs (FastAPI)**
+- [x] **Task 3.4: Create Model Inference APIs (FastAPI)**
   - **Description:** Expose `/api/v1/predict/delay` and `/api/v1/predict/demand` endpoints to serve real-time predictions to the frontend.
   - **Commit:** `feat(api): create REST endpoints for delay and demand model inference`
 
-- [ ] **Task 3.5: Implement Alerting & Threshold Engine**
+- [x] **Task 3.5: Implement Alerting & Threshold Engine**
   - **Description:** Build a backend service that evaluates model outputs against risk thresholds to generate stateful `Warning` and `Critical` alerts.
   - **Commit:** `feat(backend): build real-time alerting engine based on risk thresholds`
 
