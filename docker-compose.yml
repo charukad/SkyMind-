@@ -9,11 +9,11 @@ services:
       POSTGRES_PASSWORD: skymind_password
       POSTGRES_DB: skymind_db
     ports:
-      - "5432:5432"
+      - "5455:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U skymind_user -d skymind_db"]
+      test: [ "CMD-SHELL", "pg_isready -U skymind_user -d skymind_db" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -26,7 +26,7 @@ services:
     volumes:
       - redis_data:/data
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: [ "CMD", "redis-cli", "ping" ]
       interval: 10s
       timeout: 5s
       retries: 5

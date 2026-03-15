@@ -30,6 +30,12 @@ async def health_check():
     """Basic health check endpoint."""
     return {"status": "healthy", "service": "SkyMind Backend"}
 
+from src.api.routes.ml import router as ml_router
+from src.api.routes.websockets import router as ws_router
+
+app.include_router(ml_router)
+app.include_router(ws_router)
+
 if __name__ == "__main__":
     logger.info("Starting SkyMind Backend Server...")
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
